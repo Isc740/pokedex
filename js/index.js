@@ -7,7 +7,7 @@ async function fetchPokemonData(pokemon) {
 document.addEventListener("DOMContentLoaded", async () => {
     let question = Number(prompt("Quieres (1) buscar, o (2) mostrar un rango de pokemones?"));
     if (question === 1) {
-        const pokemonName = prompt("Inserte el nombre del pokemon")
+        const pokemonName = prompt("Inserte el nombre del pokemon").toLowerCase();
         const pokemonData = await fetchPokemonData(pokemonName);
         document.querySelector(".container").innerHTML = addPokemonComponent(pokemonData);
     } else {
