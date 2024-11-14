@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
         let start = prompt("Ingrese el numero de donde empezar");
         let end = prompt("Ingrese el numero del final");
+
         for (let i = start; i <= end; i++) {
             const pokemonData = await fetchPokemonData(i);
             document.querySelector(".container").innerHTML += addPokemonComponent(pokemonData);
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 })
 
 const addPokemonComponent = (pokemonData) => `
-  <div class="card my-5" style="width: 25rem;">
+  <div class="card" style="width: 25rem;">
      <img class="card-img-top img-fluid" src="${pokemonData.sprites.front_default}" alt="Card image cap">
      <div class="card-body">
          <h5 class="card-title">${pokemonData.species.name}</h5>
