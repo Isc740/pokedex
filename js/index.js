@@ -9,7 +9,6 @@ async function displayMultiplePokemons(start, end) {
 	for (let i = start; i <= end; i++) {
 		promises.push(fetchPokemonData(i));
 	}
-
 	let pokemonDataArray = await Promise.all(promises);
 	document.querySelector(".container").innerHTML = pokemonDataArray
 		.map((pokemonData) => addPokemonComponent(pokemonData))
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 	} else {
 		let start = prompt("Ingrese el numero de donde empezar");
 		let end = prompt("Ingrese el numero del final");
-
 		displayMultiplePokemons(start, end);
 	}
 });
@@ -42,4 +40,3 @@ const addPokemonComponent = (pokemonData) => `
          <a href="#" class="btn btn-primary">Ver pokemon</a>
      </div>
     </div>`;
-
