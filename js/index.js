@@ -19,15 +19,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 	let question = Number(
 		prompt("Quieres (1) buscar, o (2) mostrar un rango de pokemones?"),
 	);
-	if (question === 1) {
+
+	if (question === 2) {
+		let start = prompt("Ingrese el numero de donde empezar");
+		let end = prompt("Ingrese el numero del final");
+		displayMultiplePokemons(start, end);
+	} else {
 		const pokemonName = prompt("Inserte el nombre del pokemon").toLowerCase();
 		const pokemonData = await fetchPokemonData(pokemonName);
 		document.querySelector(".container").innerHTML =
 			addPokemonComponent(pokemonData);
-	} else {
-		let start = prompt("Ingrese el numero de donde empezar");
-		let end = prompt("Ingrese el numero del final");
-		displayMultiplePokemons(start, end);
 	}
 });
 
