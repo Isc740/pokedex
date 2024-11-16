@@ -6,27 +6,27 @@ async function fetchPokemonData(pokemon) {
 	return data;
 }
 
-async function displayMultiplePokemons(start, end) {
+async function fetchMultiplePokemons(start, end) {
 	let promises = [];
 	for (let i = start; i <= end; i++) {
 		promises.push(fetchPokemonData(i));
 	}
 
-	let pokemonDataArray = await Promise.all(promises);
-	document.querySelector(".container").innerHTML = pokemonDataArray
-		.map((pokemonData) => addPokemonComponent(pokemonData))
-		.join("");
+	return await Promise.all(promises);
 }
 
-const addPokemonComponent = (pokemonData) => `
-  <div class="card" style="width: 24rem;">
-     <img class="card-img-top img-fluid" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
-     <div class="card-body">
-         <h5 class="card-title">${pokemonData.species.name}</h5>
-         <p class="card-text">Pokemon numero: <strong>${pokemonData.id}</strong></p>
-         <a href="#" class="btn btn-primary">Ver pokemon</a>
-     </div>
-    </div>`;
+const addPokemonComponent = (pokemonData) => {
+	let template = `
+        <div class="card" style="width: 24rem;">
+            <img class="card-img-top img-fluid" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">${pokemonData.species.name}</h5>
+                <p class="card-text">N.ᵒ <strong>${pokemonData.id.toString().padStart(4, "0")}</strong></p>
+                <p>${pokemonData.types[0]}</p>
+            </div>
+        </div>`;
+	return template;
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
 	let question = Number(
@@ -36,7 +36,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if (question === 2) {
 		let start = prompt("Ingrese el numero de donde empezar");
 		let end = prompt("Ingrese el numero del final");
-		displayMultiplePokemons(start, end);
+		let pokemonDataArray = await fetchMultiplePokemons(start, end);
+		document.querySelector(".container").innerHTML = pokemonDataArray
+			.map((pokemonData) => addPokemonComponent(pokemonData))
+			.join("");
 	} else {
 		const pokemonName = prompt("Inserte el nombre del pokemon").toLowerCase();
 		const pokemonData = await fetchPokemonData(pokemonName);
