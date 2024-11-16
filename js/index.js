@@ -29,10 +29,10 @@ function getPokemonAttributes(attribute, target) {
 
 	for (let i = 0; i < length; i++) {
 		let key = Array.isArray(attribute) ? i : Object.keys(attribute)[i];
+
 		if (key === target) results.push(attribute[key]);
-		else if (isIterable(attribute[key])) {
+		else if (isIterable(attribute[key]))
 			results = results.concat(getPokemonAttributes(attribute[key], target));
-		}
 	}
 	return results;
 }
