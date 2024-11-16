@@ -1,4 +1,5 @@
-"use strict";
+import PokedexHelper from "./pokedexUtils.js";
+("use strict");
 
 document.addEventListener("DOMContentLoaded", async () => {
 	let question = Number(
@@ -8,14 +9,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 	if (question === 2) {
 		let start = prompt("Ingrese el numero de donde empezar");
 		let end = prompt("Ingrese el numero del final");
-		let pokemonDataArray = await fetchMultiplePokemon(start, end);
+		let pokemonDataArray = await PokedexHelper.fetchMultiplePokemon(start, end);
 		document.querySelector(".container").innerHTML = pokemonDataArray
-			.map((pokemonData) => addPokemonCard(pokemonData))
+			.map((pokemonData) => PokedexHelper.addPokemonCard(pokemonData))
 			.join("");
 	} else {
 		const pokemonName = prompt("Inserte el nombre del pokemon").toLowerCase();
-		const pokemonData = await fetchPokemonInfo(pokemonName);
+		const pokemonData = await PokedexHelper.fetchPokemonInfo(pokemonName);
 		document.querySelector(".container").innerHTML =
-			addPokemonCard(pokemonData);
+			PokedexHelper.addPokemonCard(pokemonData);
 	}
 });
