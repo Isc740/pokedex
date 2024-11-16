@@ -51,14 +51,14 @@ const PokedexHelper = {
 
 	addPokemonCard(pokemonData) {
 		return `
-            <div class="card pokemon-card shadow-sm" style="width: auto;">
-                <img class="card-img-top img-fluid m-3 bg-light" style="width: 250px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${pokemonData.species.name}</h5>
-                    <p class="card-text">N.ᵒ <strong>${pokemonData.id.toString().padStart(4, "0")}</strong></p>
-                    <p>${this.getPokemonAttributes(pokemonData.types, "name")}</p>
-                </div>
-            </div>`;
+			<div class="card pokemon-card shadow-sm" style="width: auto;">
+				<img class="card-img-top img-fluid m-3 bg-light" style="width: 250px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">${pokemonData.species.name}</h5>
+					<p class="card-text">N.ᵒ <strong>${pokemonData.id.toString().padStart(4, "0")}</strong></p>
+					<p>${this.getPokemonAttributes(pokemonData.types, "name")}</p>
+				</div>
+			</div>`;
 	},
 };
 
