@@ -20,7 +20,7 @@ const getLength = (target) => {
 	if (typeof target === "object") return Object.keys(target).length;
 };
 
-const isObject = (target) =>
+const isIterable = (target) =>
 	typeof target === "object" || Array.isArray(target) ? true : false;
 
 function getPokemonAttributes(attribute, target) {
@@ -30,7 +30,7 @@ function getPokemonAttributes(attribute, target) {
 	for (let i = 0; i < length; i++) {
 		let key = Array.isArray(attribute) ? i : Object.keys(attribute)[i];
 		if (key === target) results.push(attribute[key]);
-		else if (isObject(attribute[key])) {
+		else if (isIterable(attribute[key])) {
 			results = results.concat(getPokemonAttributes(attribute[key], target));
 		}
 	}
