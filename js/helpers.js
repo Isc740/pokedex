@@ -1,15 +1,5 @@
 "use strict";
 
-const addPokemonCard = (pokemonData) => `
-		<div class="card pokemon-card shadow-sm" style="width: auto;">
-			<img class="card-img-top img-fluid m-3 bg-light" style="width: 250px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
-			<div class="card-body">
-				<h5 class="card-title">${pokemonData.species.name}</h5>
-				<p class="card-text">N.ᵒ <strong>${pokemonData.id.toString().padStart(4, "0")}</strong></p>
-				<p>${getPokemonAttributes(pokemonData.types, "name")}</p>
-			</div>
-		</div>`;
-
 async function fetchPokemonInfo(pokemon) {
 	const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
 	const data = await response.json();
@@ -46,3 +36,13 @@ function getPokemonAttributes(attribute, target) {
 	}
 	return results;
 }
+
+const addPokemonCard = (pokemonData) => `
+		<div class="card pokemon-card shadow-sm" style="width: auto;">
+			<img class="card-img-top img-fluid m-3 bg-light" style="width: 250px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">${pokemonData.species.name}</h5>
+				<p class="card-text">N.ᵒ <strong>${pokemonData.id.toString().padStart(4, "0")}</strong></p>
+				<p>${getPokemonAttributes(pokemonData.types, "name")}</p>
+			</div>
+		</div>`;
