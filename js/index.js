@@ -38,7 +38,7 @@ function getPokemonAttributes(attribute, target) {
 }
 
 const addPokemonCard = (pokemonData) => `
-		<div class="card shadow-sm" style="width: auto;">
+		<div class="card pokemon-card shadow-sm" style="width: auto;">
 			<img class="card-img-top img-fluid m-3 bg-light" style="width: 250px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
 			<div class="card-body">
 				<h5 class="card-title">${pokemonData.species.name}</h5>
