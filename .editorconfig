@@ -12,7 +12,7 @@ insert_final_newline = true
 # Set default charset
 [*.{js,py}]
 charset = utf-8
-indent_style = space
+indent_style = tab 
 indent_size = 4
 
 # Tab indentation (no size specified)
