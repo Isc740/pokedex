@@ -3,10 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	window.addEventListener("scroll", function () {
 		const navbar = document.querySelector(".navbar");
-		if (window.scrollY > 150) {
+		const placeholder = document.querySelector(".navbar-placeholder");
+		if (window.scrollY > 102) {
 			navbar.classList.add("fixed-top");
+			placeholder.style.height = `${102}px`;
 		} else {
 			navbar.classList.remove("fixed-top");
+			placeholder.style.height = "0px";
 		}
 	});
 
