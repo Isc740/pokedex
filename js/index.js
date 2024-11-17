@@ -1,6 +1,6 @@
 ("use strict");
 
-import PokedexHelper from "./pokedexUtils.js";
+import PokedexHelper from "./pokedexHelper.js";
 
 function listenCardClick() {
 	let pokemonCards = document.querySelectorAll(".pokemon-card");

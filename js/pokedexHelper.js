@@ -1,11 +1,11 @@
 "use strict";
 
 const PokedexHelper = {
-	formatPokemonName(name) {
+	uppFirstLetter(name) {
 		return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 	},
 
-	async fetchPokemonInfo(pokemon) {
+	async fetchPokemonData(pokemon) {
 		const response = await fetch(
 			`https://pokeapi.co/api/v2/pokemon/${pokemon}`,
 		);
@@ -16,7 +16,7 @@ const PokedexHelper = {
 	async fetchMultiplePokemon(start, end) {
 		const promises = [];
 		for (let i = start; i <= end; i++) {
-			promises.push(this.fetchPokemonInfo(i));
+			promises.push(this.fetchPokemonData(i));
 		}
 		return await Promise.all(promises);
 	},
@@ -54,9 +54,13 @@ const PokedexHelper = {
 			<div class="card pokemon-card shadow-sm" style="width: auto;"data-id="${pokemonData.id}">
 				<img class="card-img-top img-fluid m-3 bg-light" style="width: 250px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
 				<div class="card-body">
-					<h5 class="card-title">${pokemonData.species.name}</h5>
+					<h5 class="card-title">${this.uppFirstLetter(pokemonData.species.name)}</h5>
 					<p class="card-text">N.ᵒ ${pokemonData.id.toString().padStart(4, "0")}</p>
-					<p>${this.getPokemonAttributes(pokemonData.types, "name")}</p>
+					<div class="type-container d-flex">
+						<p>${this.getPokemonAttributes(pokemonData.types, "name")
+							.map((type) => this.uppFirstLetter(type))
+							.join(" ")}</p>
+					</div>
 				</div>
 			</div>`;
 	},

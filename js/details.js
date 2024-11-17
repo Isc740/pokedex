@@ -1,11 +1,13 @@
 ("use strict");
 
-import PokedexHelper from "./pokedexUtils.js";
+import PokedexHelper from "./pokedexHelper.js";
+
+function getPokemonPage(pokemonData) {}
 
 document.addEventListener("DOMContentLoaded", async () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const pokemonId = urlParams.get("id");
-	let pokemonInfo = await PokedexHelper.fetchPokemonInfo(pokemonId);
-	document.querySelector(".container").innerHTML =
-		PokedexHelper.getPokemonCard(pokemonInfo);
+	let pokemonData = await PokedexHelper.fetchPokemonData(pokemonId);
+	document.querySelector(".pk-details").innerHTML =
+		PokedexHelper.getPokemonCard(pokemonData);
 });
