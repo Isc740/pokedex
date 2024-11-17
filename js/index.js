@@ -7,7 +7,6 @@ function listenCardClick() {
 	pokemonCards.forEach((card) => {
 		card.addEventListener("click", () => {
 			let pokemonId = card.getAttribute("data-id");
-			console.log(pokemonId);
 			window.location.href = `/views/details.html?id=${pokemonId}`;
 		});
 	});

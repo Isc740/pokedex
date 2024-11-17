@@ -7,3 +7,10 @@
     box-shadow: 7px 8px 8px 4px #e9ecef;
     transform: scale(1.02);
 }
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}

@@ -6,11 +6,18 @@ const PokedexHelper = {
 	},
 
 	async fetchPokemonData(pokemon) {
-		const response = await fetch(
-			`https://pokeapi.co/api/v2/pokemon/${pokemon}`,
-		);
-		const data = await response.json();
-		return data;
+		try {
+			const response = await fetch(
+				`https://pokeapi.co/api/v2/pokemon/${pokemon}`,
+			);
+			if (!response.ok) {
+				throw new Error("Pokemon not found");
+			}
+			const data = await response.json();
+			return data;
+		} catch (error) {
+			return null;
+		}
 	},
 
 	async fetchMultiplePokemon(start, end) {
