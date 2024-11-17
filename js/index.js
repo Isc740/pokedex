@@ -13,10 +13,15 @@ function listenCardClick() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-	let pokemonDataArray = await PokedexHelper.fetchMultiplePokemon(1, 36);
-	document.querySelector(".container").innerHTML = pokemonDataArray
+	let pokemonDataArray = await PokedexHelper.fetchMultiplePokemon(1, 35);
+	document.querySelector(".pk-list").innerHTML = pokemonDataArray
 		.map((pokemonData) => PokedexHelper.getPokemonCard(pokemonData))
 		.join("");
 
+	document.querySelector(".pk-search").addEventListener("submit", (e) => {
+		e.preventDefault();
+		const query = document.querySelector(".pk-search input").value;
+		window.location.href = `/views/details.html?id=${query}`;
+	});
 	listenCardClick();
 });

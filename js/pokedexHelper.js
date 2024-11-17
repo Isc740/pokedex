@@ -58,8 +58,8 @@ const PokedexHelper = {
 
 	getPokemonCard(pokemonData) {
 		return `
-			<div class="card pokemon-card shadow-sm" style="width: auto;"data-id="${pokemonData.id}">
-				<img class="card-img-top img-fluid m-3 bg-light" style="width: 250px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
+			<div class="card pokemon-card shadow-sm flex-grow-0" style="width: 230px;"data-id="${pokemonData.id}">
+				<img class="card-img-top img-fluid m-3 bg-light" style="width: 200px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">${this.uppFirstLetter(pokemonData.species.name)}</h5>
 					<p class="card-text">N.ᵒ ${pokemonData.id.toString().padStart(4, "0")}</p>

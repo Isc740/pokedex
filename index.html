@@ -19,8 +19,32 @@
   <body>
     <div class="navbar-placeholder"></div>
     <div class="navbar-temp"></div>
+
+    <main class="container bg-light rounded-3 my-5 p-5">
+      <div class="row align-items-center">
+        <div class="col">
+          <form class="d-flex pk-search" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Pikachu"
+              aria-label="Search"
+            />
+            <button class="btn btn-dark" type="submit">Search</button>
+          </form>
+        </div>
+        <div class="col">
+          <h3 class="fw-bold">Enter the name of a pokemon!</h3>
+          <p>
+            Not sure where to start? Search for Pikachu, Charizard, their
+            pokedex number, or any Pokémon you like!
+          </p>
+        </div>
+      </div>
+    </main>
+
     <div
-      class="pk-list container d-flex justify-content-center align-items-center flex-wrap gap-4"
+      class="container pk-list d-flex justify-content-center align-items-center flex-wrap gap-4"
     ></div>
 
     <script
@@ -28,7 +52,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="/js/index.js"></script>
     <script type="module" src="/js/navbar.js"></script>
+    <script type="module" src="/js/index.js"></script>
   </body>
 </html>

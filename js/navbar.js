@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelector(".navbar-temp").innerHTML = getNavbar();
 
-	window.addEventListener("scroll", function () {
+	window.addEventListener("scroll", () => {
 		const navbar = document.querySelector(".navbar");
 		const placeholder = document.querySelector(".navbar-placeholder");
 		if (window.scrollY > 102) {
@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	document
-		.querySelector(".pk-search")
-		.addEventListener("submit", function (event) {
+		.querySelector(".pk-search-navbar")
+		.addEventListener("submit", (event) => {
 			event.preventDefault();
-			const query = document.querySelector(".pk-search input").value;
+			const query = document.querySelector(".pk-search-navbar input").value;
 			window.location.href = `/views/details.html?id=${query}`;
 		});
 });
@@ -47,14 +47,14 @@ const getNavbar = () => `
 				>
 				</li>
 			</ul>
-			<form class="d-flex pk-search" role="search">
+			<form class="d-flex pk-search-navbar" role="search">
 				<input
 				class="form-control me-2"
 				type="search"
-				placeholder="Search"
+				placeholder="Pikachu"
 				aria-label="Search"
 				/>
-				<button class="btn btn-outline-success" type="submit">
+				<button class="btn btn-dark" type="submit">
 				Search
 				</button>
 			</form>
