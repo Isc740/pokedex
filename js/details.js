@@ -26,15 +26,6 @@ function addStatChart(stats) {
     const names = stats.map((stat) => stat.stat.name);
     const values = stats.map((stat) => stat.base_stat);
 
-    const statColors = [
-        "#F39C12",
-        "#E74C3C",
-        "#1F618D",
-        "#9B59B6",
-        "#16A085",
-        "#F39C12",
-    ];
-
     const ctx = document.getElementById("statsChart").getContext("2d");
     const statsChart = new Chart(ctx, {
         type: "bar",
