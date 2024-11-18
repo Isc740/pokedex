@@ -27,11 +27,10 @@ const PokedexHelper = {
 
         let result = ``;
         types.forEach((type, index) => {
-            result += `<div class="pk-type text-center rounded-2" style="background-color: ${
-                colors[index]
-            }; color:#ffffff; padding: 10x; max-width: 90px;">${this.uppFirstLetter(
-                type.toString()
-            )}</div>`;
+            result += `
+            <div class="pk-type text-center rounded-2" style="background-color: ${ colors[index] }; color:#ffffff; padding: 10x; max-width: 90px;">
+            ${this.uppFirstLetter( type.toString())}
+            </div>`;
         });
 
         return result;
