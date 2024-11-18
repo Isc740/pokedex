@@ -1,5 +1,3 @@
-("use strict");
-
 import PokedexHelper from "./pokedexHelper.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -16,7 +14,59 @@ document.addEventListener("DOMContentLoaded", async () => {
     const additionalPokemonData =
         await PokedexHelper.fetchAdditionalPokemonData(pokemonId);
 
-    const template = `
+    document.querySelector(".main").innerHTML = template(
+        pokemonData,
+        additionalPokemonData,
+    );
+
+    addStatChart(pokemonData.stats);
+});
+
+function addStatChart(stats) {
+    const names = stats.map((stat) => stat.stat.name);
+    const values = stats.map((stat) => stat.base_stat);
+
+    const statColors = [
+        "#F39C12",
+        "#E74C3C",
+        "#1F618D",
+        "#9B59B6",
+        "#16A085",
+        "#F39C12",
+    ];
+
+    const ctx = document.getElementById("statsChart").getContext("2d");
+    const statsChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: names,
+            datasets: [
+                {
+                    label: "Base Stats",
+                    data: values,
+                    backgroundColor: "#2B59C3",
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            indexAxis: "y",
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 255,
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 255,
+                },
+            },
+        },
+    });
+}
+
+const template = (pokemonData, additionalPokemonData) => `
     <section class="basic-pk-info container">
         <h1 class="pk-name text-center fw-bolder">
             ${PokedexHelper.uppFirstLetter(pokemonData.species.name)}
@@ -72,7 +122,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <canvas id="statsChart" width="400" height="200"></canvas>
+            </div>
+        </div>
     </section> `;
-
-    document.querySelector(".main").innerHTML = template;
-});

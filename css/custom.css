@@ -23,3 +23,10 @@
     width: 100%;
     z-index: 1000;
 }
+
+#statsChart {
+    max-width: 500px;
+    max-height: 300px;
+    width: 100%;
+    height: auto;
+}
