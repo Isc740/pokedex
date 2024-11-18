@@ -28,8 +28,8 @@ const PokedexHelper = {
         let result = ``;
         types.forEach((type, index) => {
             result += `
-            <div class="pk-type text-center rounded-2" style="background-color: ${ colors[index] }; color:#ffffff; padding: 10x; max-width: 90px;">
-            ${this.uppFirstLetter( type.toString())}
+            <div class="pk-type text-center rounded-2 fw-bold" style="background-color: ${colors[index]}; color:#ffffff; padding: 10x; max-width: 90px;">
+            ${this.uppFirstLetter(type.toString())}
             </div>`;
         });
 
@@ -43,7 +43,7 @@ const PokedexHelper = {
     async fetchPokemonData(pokemon) {
         try {
             const response = await fetch(
-                `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+                `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
             );
             if (!response.ok) {
                 throw new Error("Pokemon not found");
@@ -58,7 +58,7 @@ const PokedexHelper = {
     async fetchAdditionalPokemonData(pokemon) {
         try {
             const response = await fetch(
-                `https://pokeapi.co/api/v2/pokemon-species/${pokemon}`
+                `https://pokeapi.co/api/v2/pokemon-species/${pokemon}`,
             );
             if (!response.ok) {
                 throw new Error("Pokemon not found");
@@ -101,7 +101,7 @@ const PokedexHelper = {
                 results.push(attribute[key]);
             } else if (this.isIterable(attribute[key])) {
                 results = results.concat(
-                    this.getPokemonAttributes(attribute[key], target)
+                    this.getPokemonAttributes(attribute[key], target),
                 );
             }
         }
@@ -130,13 +130,13 @@ const PokedexHelper = {
                 setTimeout(async () => {
                     let pokemonDataArray = await this.fetchMultiplePokemon(
                         startIndex,
-                        endIndex
+                        endIndex,
                     );
 
                     document.querySelector(containerSelector).innerHTML +=
                         pokemonDataArray
                             .map((pokemonData) =>
-                                this.getPokemonCard(pokemonData)
+                                this.getPokemonCard(pokemonData),
                             )
                             .join("");
 
@@ -165,7 +165,10 @@ const PokedexHelper = {
 					<p class="card-text">N.ᵒ ${pokemonData.id.toString().padStart(4, "0")}</p>
 					<div class="container row type-container gap-1 d-flex flex-row">
                         ${this.addTypes(
-                            this.getPokemonAttributes(pokemonData.types, "name")
+                            this.getPokemonAttributes(
+                                pokemonData.types,
+                                "name",
+                            ),
                         )}
 					</div>
 				</div>
