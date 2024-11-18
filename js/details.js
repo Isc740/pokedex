@@ -35,7 +35,7 @@ function addStatChart(stats) {
                 {
                     label: "Base Stats",
                     data: values,
-                    backgroundColor: "#2B59C3",
+                    backgroundColor: "#6390F0",
                     borderWidth: 1,
                 },
             ],
@@ -65,12 +65,23 @@ const template = (pokemonData, additionalPokemonData) => `
         <h2 class="pk-number text-center fw-bold mb-5">
             N.ᵒ ${pokemonData.id.toString().padStart(4, "0")}
         </h2>
+        <div class="d-flex justify-content-center mb-5">
+            <div class="row d-flex align-items-center flex-column bg-light" style="max-width: 350px;">
+                <div style="width: 350px; height: 350px">
+                    <img
+                        class="pk-image img-fluid"
+                        alt="Image of ${PokedexHelper.uppFirstLetter(pokemonData.species.name)}"
+                        src="${pokemonData.sprites.other["official-artwork"].front_default}"
+                    />
+                </div>
+            </div>
+        </div>
         <div class="row gap-5">
             <div class="col">
                 <p class="pk-description fs-5">
                     ${additionalPokemonData.flavor_text_entries[3].flavor_text}
                 </p>
-                <div class="row bg-info-subtle p-3 rounded-3">
+                <div class="row bg-info-subtle p-3 rounded-3 my-4">
                     <div class="col">
                         <p class="fs-5 fw-bold">Height:</p>
                         <p class="pk-height">${(pokemonData.height / 10).toFixed(1)}m</p>
@@ -96,19 +107,12 @@ const template = (pokemonData, additionalPokemonData) => `
                     </div>
                 </div>
             </div>
-            <div class="col d-flex align-items-center flex-column bg-light">
-                <div style="width: 350px; height: 350px">
-                    <img
-                        class="pk-image img-fluid"
-                        alt="Image of ${PokedexHelper.uppFirstLetter(pokemonData.species.name)}"
-                        src="${pokemonData.sprites.other["official-artwork"].front_default}"
-                    />
-                </div>
+            <div class="col align-self-center">
+                <canvas id="statsChart" width="400" height="200"></canvas>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <canvas id="statsChart" width="400" height="200"></canvas>
             </div>
         </div>
     </section> `;

@@ -2,15 +2,6 @@
 
 import PokedexHelper from "./pokedexHelper.js";
 
-function listenCardClick() {
-    let pokemonCards = document.querySelectorAll(".pokemon-card");
-    pokemonCards.forEach((card) => {
-        card.addEventListener("click", () => {
-            let pokemonId = card.getAttribute("data-id");
-            window.location.href = `/views/details.html?id=${pokemonId}`;
-        });
-    });
-}
 
 document.addEventListener("DOMContentLoaded", async () => {
     let pokemonDataArray = await PokedexHelper.fetchMultiplePokemon(1, 15);
@@ -25,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = `/views/details.html?id=${query}`;
     });
 
-    listenCardClick();
-
+    PokedexHelper.listenCardClick(".pokemon-card");
     PokedexHelper.loadPokemonOnScroll(".pk-list", 16, 40, 25);
 });
