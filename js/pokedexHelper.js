@@ -1,6 +1,38 @@
 "use strict";
 
+const typeColors = {
+	normal: '#A8A77A',
+	fire: '#EE8130',
+	water: '#6390F0',
+	electric: '#F7D02C',
+	grass: '#7AC74C',
+	ice: '#96D9D6',
+	fighting: '#C22E28',
+	poison: '#A33EA1',
+	ground: '#E2BF65',
+	flying: '#A98FF3',
+	psychic: '#F95587',
+	bug: '#A6B91A',
+	rock: '#B6A136',
+	ghost: '#735797',
+	dragon: '#6F35FC',
+	dark: '#705746',
+	steel: '#B7B7CE',
+	fairy: '#D685AD',
+};
+
 const PokedexHelper = {
+    addTypes(types) {
+        let colors = types.map(type => typeColors[type]);
+
+        let result = ``;
+        types.forEach((type, index) => {
+            result += `<div class="pk-type text-center rounded-2" style="background-color: ${colors[index]}; color:#ffffff; padding: 10x; max-width: 90px;">${this.uppFirstLetter(type.toString())}</div>`;
+        })
+        
+        return result;
+    },
+
     uppFirstLetter(name) {
         return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     },
@@ -101,17 +133,15 @@ const PokedexHelper = {
 
     getPokemonCard(pokemonData) {
         return `
-			<div class="card pokemon-card shadow-sm flex-grow-0" style="width: 230px;"data-id="${pokemonData.id}">
+			<div class="card pokemon-card shadow-sm flex-grow-0" style="width: 230px; height:367px;"data-id="${pokemonData.id}">
 				<div style="height: 204px; width: 204px;">
 					<img class="card-img-top img-fluid m-3 bg-light" style="width: 200px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
 				</div>
 				<div class="card-body">
 					<h5 class="card-title">${this.uppFirstLetter(pokemonData.species.name)}</h5>
 					<p class="card-text">N.ᵒ ${pokemonData.id.toString().padStart(4, "0")}</p>
-					<div class="type-container d-flex">
-						<p>${this.getPokemonAttributes(pokemonData.types, "name")
-                            .map((type) => this.uppFirstLetter(type))
-                            .join(" ")}</p>
+					<div class="container row type-container gap-1 d-flex flex-row">
+                        ${this.addTypes(this.getPokemonAttributes(pokemonData.types, "name"))}
 					</div>
 				</div>
 			</div>`;

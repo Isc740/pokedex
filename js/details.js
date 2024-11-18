@@ -90,15 +90,8 @@ const template = (pokemonData, additionalPokemonData) => `
                                 .join(" ")}
                         </p>
                         <p class="fs-5 fw-bold">Types:</p>
-                        <div class="pk-type">
-                            ${PokedexHelper.getPokemonAttributes(
-                                pokemonData.types,
-                                "name",
-                            )
-                                .map((type) =>
-                                    PokedexHelper.uppFirstLetter(type),
-                                )
-                                .join(" ")}
+                        <div class="pk-type d-flex row gap-1">
+                        ${PokedexHelper.addTypes(PokedexHelper.getPokemonAttributes(pokemonData.types, "name"))}
                         </div>
                     </div>
                 </div>
