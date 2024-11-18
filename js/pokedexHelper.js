@@ -65,32 +65,28 @@ const PokedexHelper = {
 
 			if (scrollPosition >= totalHeight && !isLoading) {
 				isLoading = true;
-				try {
-					let pokemonDataArray = await this.fetchMultiplePokemon(
-						startIndex,
-						endIndex,
-					);
+				let pokemonDataArray = await this.fetchMultiplePokemon(
+					startIndex,
+					endIndex,
+				);
 
-					document.querySelector(containerSelector).innerHTML +=
-						pokemonDataArray
-							.map((pokemonData) => this.getPokemonCard(pokemonData))
-							.join("");
+				document.querySelector(containerSelector).innerHTML += pokemonDataArray
+					.map((pokemonData) => this.getPokemonCard(pokemonData))
+					.join("");
 
-					startIndex = endIndex + 1;
-					endIndex = startIndex + batchSize - 1;
-				} catch (error) {
-					console.error("Error fetching Pokémon data: ", error);
-				} finally {
-					isLoading = false;
-				}
+				startIndex = endIndex + 1;
+				endIndex = startIndex + batchSize - 1;
 			}
+			isLoading = false;
 		});
 	},
 
 	getPokemonCard(pokemonData) {
 		return `
 			<div class="card pokemon-card shadow-sm flex-grow-0" style="width: 230px;"data-id="${pokemonData.id}">
-				<img class="card-img-top img-fluid m-3 bg-light" style="width: 200px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
+				<div style="height: 204px; width: 204px;">
+					<img class="card-img-top img-fluid m-3 bg-light" style="width: 200px;" src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="Card image cap">
+				</div>
 				<div class="card-body">
 					<h5 class="card-title">${this.uppFirstLetter(pokemonData.species.name)}</h5>
 					<p class="card-text">N.ᵒ ${pokemonData.id.toString().padStart(4, "0")}</p>
