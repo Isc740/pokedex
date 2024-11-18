@@ -8,6 +8,15 @@
     transform: scale(1.02);
 }
 
+.pk-image {
+    width: 350px;
+    height: auto;
+}
+
+.basic-pk-info {
+    padding: 0 170px;
+}
+
 .fixed-top {
     position: fixed;
     top: 0;
