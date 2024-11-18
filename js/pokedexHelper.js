@@ -56,6 +56,37 @@ const PokedexHelper = {
 		return results;
 	},
 
+	loadPokemonOnScroll(containerSelector, startIndex, endIndex, batchSize) {
+		let isLoading = false;
+
+		window.addEventListener("scroll", async () => {
+			const scrollPosition = window.scrollY + window.innerHeight;
+			const totalHeight = document.documentElement.scrollHeight;
+
+			if (scrollPosition >= totalHeight && !isLoading) {
+				isLoading = true;
+				try {
+					let pokemonDataArray = await this.fetchMultiplePokemon(
+						startIndex,
+						endIndex,
+					);
+
+					document.querySelector(containerSelector).innerHTML +=
+						pokemonDataArray
+							.map((pokemonData) => this.getPokemonCard(pokemonData))
+							.join("");
+
+					startIndex = endIndex + 1;
+					endIndex = startIndex + batchSize - 1;
+				} catch (error) {
+					console.error("Error fetching Pokémon data: ", error);
+				} finally {
+					isLoading = false;
+				}
+			}
+		});
+	},
+
 	getPokemonCard(pokemonData) {
 		return `
 			<div class="card pokemon-card shadow-sm flex-grow-0" style="width: 230px;"data-id="${pokemonData.id}">

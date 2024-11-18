@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelector(".navbar-temp").innerHTML = getNavbar();
 
+	const navbar = document.querySelector(".navbar");
+	const placeholder = document.querySelector(".navbar-placeholder");
+	const navbarHeight = navbar.offsetHeight;
+
 	window.addEventListener("scroll", () => {
-		const navbar = document.querySelector(".navbar");
-		const placeholder = document.querySelector(".navbar-placeholder");
-		if (window.scrollY > 102) {
+		if (window.scrollY > navbarHeight) {
 			navbar.classList.add("fixed-top");
-			placeholder.style.height = `${102}px`;
+			placeholder.style.height = `${navbarHeight}px`;
 		} else {
 			navbar.classList.remove("fixed-top");
 			placeholder.style.height = "0px";

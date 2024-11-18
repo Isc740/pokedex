@@ -13,7 +13,8 @@ function listenCardClick() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-	let pokemonDataArray = await PokedexHelper.fetchMultiplePokemon(1, 35);
+	let pokemonDataArray = await PokedexHelper.fetchMultiplePokemon(1, 15);
+
 	document.querySelector(".pk-list").innerHTML = pokemonDataArray
 		.map((pokemonData) => PokedexHelper.getPokemonCard(pokemonData))
 		.join("");
@@ -23,5 +24,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 		const query = document.querySelector(".pk-search input").value;
 		window.location.href = `/views/details.html?id=${query}`;
 	});
+
 	listenCardClick();
+
+	PokedexHelper.loadPokemonOnScroll(".pk-list", 16, 40, 25);
 });
